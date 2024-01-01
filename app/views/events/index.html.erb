@@ -5,6 +5,18 @@
 
 <div id="events" class="space-y-4">
   <% @events.each do |event| %>
-    <%= render event %>
+    <%#= render event %>
   <% end %>
 </div>
+
+<%= Date.today %>
+
+<br>
+
+Calendar
+
+<br>
+
+<div class="overflow-auto h-96 bg-rose-300">
+  <%= turbo_frame_tag :calendar, src: calendar_path(date: Date.today), loading: :lazy, target: '_top' %>
+<div>

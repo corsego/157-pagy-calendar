@@ -1,7 +1,6 @@
 <div id="<%= dom_id event %>" class="border">
   <p>
-    <strong>Name:</strong>
-    <%= event.name %>
+    <%= link_to event.name, event %>
   </p>
 
   <p>
@@ -13,6 +12,4 @@
     <strong>Start date:</strong>
     <%= event.start_date %>
   </p>
-
-  <%= link_to "Show this event", event %>
 </div>
