@@ -1,16 +1,24 @@
-<%= turbo_frame_tag :calendar, target: '_top' do %>
-  <%#= turbo_frame_tag :calendar, src: calendar_path(date: @last_week_date), loading: :lazy %>
-  <div class="grid grid-cols-7 h-96">
-    <% days_of_week(@date).each do |day| %>
-      <div class="border">
-        <%= day %>
-        <% @events.where(start_date: day.all_day).each do |event| %>
-          <%= render 'events/event', event: %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <hr>
-  <%#= turbo_frame_tag :calendar, src: calendar_path(date: @next_week_date), data: { turbo_action: 'advance' }, loading: :lazy %>
-  <%= turbo_frame_tag :calendar, src: calendar_week_path(date: @next_week_date), loading: :lazy, target: '_top' %>
-<% end %>
+<div class="overflow-auto h-96">
+  <%#= turbo_frame_tag :calendar, src: calendar_week_path(date: @last_week_date), loading: :lazy, target: '_top', data: { turbo_action: 'advance' }, class:"hidden" %>
+  <%= turbo_frame_tag :calendar, target: '_top' do %>
+    <div class="grid grid-cols-7 h-96 bg-rose-300">
+      <% days_of_week(@date).each do |day| %>
+        <div class="border hover:bg-rose-200">
+          <div class="sticky top-0 bg-rose-400">
+          <%= day.strftime('%a, %d %B') %>
+          </div>
+          <% @events.where(start_date: day.all_day).each do |event| %>
+            <%= render 'events/event', event: %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="font-bold text-center">
+      Week # <%= @next_week_date.strftime('%U') %>
+      <%# scroll down to load next week %>
+    </div>
+
+    <%= turbo_frame_tag :calendar, src: calendar_week_path(date: @next_week_date), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
+  <% end %>
+<div>
