@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   # get "calendar", to: "events#calendar"
   get "calendar", to: "calendar#index"
   get "calendar/week", to: "calendar#week"
+  get "calendar/month", to: "calendar#month"
 end

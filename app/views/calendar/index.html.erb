@@ -1,4 +1,4 @@
 <div class="overflow-auto h-96">
-  <%#= turbo_frame_tag :calendar, src: calendar_week_path(date: params[:date] || Date.today.beginning_of_week), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
-  <%= turbo_frame_tag :calendar, src: calendar_month_path(date: params[:date] || Date.today.beginning_of_month), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
+  <%#= turbo_frame_tag :calendar, src: calendar_month_path(date: params[:date] || Date.today.beginning_of_month), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
+  <%= turbo_frame_tag :calendar, src: calendar_week_path(date: params[:date] || Date.today.beginning_of_week), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
 <div>

@@ -9,4 +9,12 @@ class CalendarController < ApplicationController
     @last_week_date = (@date - 1.week).beginning_of_week
     @next_week_date = (@date + 1.week).beginning_of_week
   end
+
+  def month
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @events = Event.where(start_date: @date.beginning_of_month..@date.end_of_month)
+    # the params in the url should be 1 month back
+    @last_month_date = (@date - 1.month).beginning_of_month
+    @next_month_date = (@date + 1.month).beginning_of_month
+  end
 end
