@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Events</h1>
+
 <%= link_to "New event", new_event_path %>
 
 <div id="events" class="space-y-4">
@@ -8,15 +9,3 @@
     <%#= render event %>
   <% end %>
 </div>
-
-<%= Date.today %>
-
-<br>
-
-Calendar
-
-<br>
-
-<div class="overflow-auto h-96 bg-rose-300">
-  <%= turbo_frame_tag :calendar, src: calendar_path(date: Date.today), loading: :lazy, target: '_top' %>
-<div>
