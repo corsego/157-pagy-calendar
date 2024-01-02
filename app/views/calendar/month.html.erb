@@ -3,23 +3,27 @@
   <%= turbo_frame_tag :calendar, target: '_top' do %>
     <!-- <div class="font-bold text-center">Week # <%= @date.strftime('%U, %Y') %></div> -->
     <div class="grid grid-cols-7 h-96 bg-rose-300">
-      <% days_of_week(@date).each do |day| %>
-        <div class="border hover:bg-rose-200">
+      <% month_offset(@date).times do %>
+        <div></div>
+      <% end %>
+      <% days_of_month(@date).each do |day| %>
+        <div class="border hover:bg-rose-200 h-12">
           <div class="sticky top-0 bg-rose-400 text-center">
           <%= day.strftime('%a, %d %b') %>
           </div>
           <% @events.where(start_date: day.all_day).each do |event| %>
             <%= render 'events/event', event: %>
           <% end %>
+          <%= link_to "+", new_event_path(day:) %>
         </div>
       <% end %>
     </div>
 
     <div class="font-bold text-center">
-      Week # <%= @next_week_date.strftime('%U, %Y') %>
+      <%= @next_month_date.strftime('%B') %>
       <%# scroll down to load next week %>
     </div>
 
-    <%= turbo_frame_tag :calendar, src: calendar_week_path(date: @next_week_date), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
+    <%= turbo_frame_tag :calendar, src: calendar_month_path(date: @next_month_date), loading: :lazy, target: '_top', data: { turbo_action: 'advance' } %>
   <% end %>
 <div>
