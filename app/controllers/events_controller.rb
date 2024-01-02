@@ -5,13 +5,6 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
-  def calendar
-    @date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @events = Event.where(start_date: @date.beginning_of_week..@date.end_of_week)
-    @last_week_date = @date - 1.week
-    @next_week_date = @date + 1.week
-  end
-
   def show
   end
 

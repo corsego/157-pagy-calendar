@@ -25,4 +25,7 @@ Things you may want to cover:
 
 Month
 Week
+- scrolling back should change the date in browser (currently updates only when a frame is loaded) (maybe when the bottom of "week" is visible, Turbo can push url?)
+- top scroll to the past
+- time within day
 Day timeline
