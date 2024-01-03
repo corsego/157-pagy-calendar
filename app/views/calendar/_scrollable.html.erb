@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "#{direction}_journal_timeline",
+  src: timeline_path(direction: direction, month_year: local_assigns[:month_year] || nil ),
+  loading: :lazy, target: "_top", data: { turbo_action: :advancea } do %>
+    <p>Loading...</p>
+<% end %>
+

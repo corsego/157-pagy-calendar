@@ -1,0 +1,16 @@
+<%= turbo_frame_tag :"#{@direction}_journal_timeline" do %>
+  <div class="flex flex-col flex-grow">
+
+    <% if @direction == "past" %>
+      <%= render "calendar/scrollable", month_year: @month_year, direction: @direction %>
+
+      <%= render "calendar/calendar",direction: @direction, calendar_data: @calendar_data %>
+
+    <% else %>
+      <%= render "calendar/calendar", direction: @direction, calendar_data: @calendar_data %>
+
+      <%= render "calendar/scrollable", month_year: @month_year, direction: @direction %>
+    <% end %>
+
+  </div>
+<% end %>
