@@ -1,20 +1,14 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Events</h1>
-<%#= link_to "New event", new_event_path %>
-<%= link_to "New event", new_event_path(start_date: [@calendar[:day]&.label, @calendar[:month].label(format: '%m-%Y')].compact.join('-')) %>
 
 <div>
   <% if params[:skip] %>
     <%= link_to 'Show Calendar', events_path %>
   <% else %>
     <%= link_to 'Hide Calendar', events_path(skip: true) %>
-    <%= link_to 'Today', pagy_url_for(@calendar.send(:last_object_at, Time.zone.now), 1) %>
-    <%#= link_to 'Today (does not work)', pagy_calendar_url_at(@calendar, Time.zone.now) %>
+    <br>
+    <%= link_to 'Today', pagy_calendar_url_at(@calendar, Time.zone.now, fit_time: true) %>
   <% end %>
 </div>
-
-<h1>Events</h1>
 
 <% if @calendar %>
   <%== pagy_info(@pagy) %>
@@ -32,6 +26,15 @@
 <%== pagy_nav(@pagy) %>
 
 <hr>
+
+<% if @calendar %>
+  <%= link_to "New event", new_event_path(start_date: [@calendar[:day]&.label, @calendar[:month].label(format: '%m-%Y')].compact.join('-')) %>
+<% else %>
+  <%= link_to "New event", new_event_path %>
+<% end %>
+
+<hr>
+
 <% if @events.any? %>
   <% @events.each do |event| %>
     <%= render 'event', event: event %>

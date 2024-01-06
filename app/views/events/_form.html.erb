@@ -23,8 +23,11 @@
 
   <div>
     <%= form.label :start_date, style: "display: block" %>
-    <%#= form.datetime_field :start_date %>
-    <%= form.datetime_field :start_date, value: params[:start_date].to_date.strftime('%Y-%m-%dT%H:%M:%S') || form.object.start_date %>
+    <% if params[:start_date] %>
+      <%= form.datetime_field :start_date, value: params[:start_date].to_date.strftime('%Y-%m-%dT%H:%M:%S') || form.object.start_date %>
+    <% else %>
+      <%= form.datetime_field :start_date %>
+    <% end %>
   </div>
 
   <div>

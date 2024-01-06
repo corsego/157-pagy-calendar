@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/ddnexus/pagy.git
-  revision: 2d313e8156c209aff9ef3177c54c477e4468e195
-  branch: master
+  revision: 9f93dd2cd1f370e25ff14d75e19710c59507dc20
+  branch: dev
   specs:
     pagy (6.2.0)
 
