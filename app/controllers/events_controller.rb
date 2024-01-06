@@ -2,7 +2,16 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
   def index
-    @events = Event.all
+    # @events = Event.all
+    collection = Event.all.order(start_date: :asc)
+    @calendar, @pagy, @events = pagy_calendar(collection,
+      year:  { size:  [1, 1, 1, 1] },
+      month:  { size: [0, 12, 12, 0], format: '%b' },
+      week:  { size: [0, 53, 53, 0], format: '%W' },
+      day:  { size: [0, 31, 31, 0], format: '%d' },
+      pagy:  { items: 10 }, # items per page
+      active: !params[:skip]
+    )
   end
 
   def show
@@ -20,7 +29,11 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+        format.html do
+          flash[:notice] = "Event was successfully created."
+          redirect_to event_url(@event)
+          # redirect_to events_path(pagy_calendar_url_at(@calendar, @event.start_date))
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
       end

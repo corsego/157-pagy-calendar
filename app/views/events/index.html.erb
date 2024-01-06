@@ -1,10 +1,41 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Events</h1>
-<%= link_to "New event", new_event_path %>
+<%#= link_to "New event", new_event_path %>
+<%= link_to "New event", new_event_path(start_date: [@calendar[:day].label, @calendar[:month].label(format: '%m-%Y')].join('-')) %>
 
-<div id="events" class="space-y-4">
-  <% @events.each do |event| %>
-    <%= render event %>
+<div>
+  <% if params[:skip] %>
+    <%= link_to 'Show Calendar', events_path %>
+  <% else %>
+    <%= link_to 'Hide Calendar', events_path(skip: true) %>
+    <%= link_to 'Today', pagy_url_for(@calendar.send(:last_object_at, Time.zone.now), 1) %>
+    <%#= link_to 'Today (does not work)', pagy_calendar_url_at(@calendar, Time.zone.now) %>
   <% end %>
 </div>
+
+<h1>Events</h1>
+
+<% if @calendar %>
+  <%== pagy_info(@pagy) %>
+  for
+  <%#== @calendar[:year].label %>
+  <%== @calendar[:day].label %>
+  <%== @calendar[:month].label(format: '%B %Y') %>
+  <%#== @calendar[:week].label %>
+  <%== pagy_nav(@calendar[:year]) %>
+  <%== pagy_nav(@calendar[:month]) %>
+  <%== pagy_nav(@calendar[:week]) %>
+  <%== pagy_nav(@calendar[:day]) %>
+<% end %>
+
+<%== pagy_nav(@pagy) %>
+
+<hr>
+<% if @events.any? %>
+  <% @events.each do |event| %>
+    <%= render 'event', event: event %>
+  <% end %>
+<% elsif @events.empty? %>
+  No events found
+<% end %>
