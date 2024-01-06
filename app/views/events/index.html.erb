@@ -2,7 +2,7 @@
 
 <h1>Events</h1>
 <%#= link_to "New event", new_event_path %>
-<%= link_to "New event", new_event_path(start_date: [@calendar[:day].label, @calendar[:month].label(format: '%m-%Y')].join('-')) %>
+<%= link_to "New event", new_event_path(start_date: [@calendar[:day]&.label, @calendar[:month].label(format: '%m-%Y')].compact.join('-')) %>
 
 <div>
   <% if params[:skip] %>
@@ -20,13 +20,13 @@
   <%== pagy_info(@pagy) %>
   for
   <%#== @calendar[:year].label %>
-  <%== @calendar[:day].label %>
+  <%== @calendar[:day]&.label %>
   <%== @calendar[:month].label(format: '%B %Y') %>
   <%#== @calendar[:week].label %>
   <%== pagy_nav(@calendar[:year]) %>
   <%== pagy_nav(@calendar[:month]) %>
-  <%== pagy_nav(@calendar[:week]) %>
-  <%== pagy_nav(@calendar[:day]) %>
+  <%== pagy_nav(@calendar[:week]) if @calendar[:week] %>
+  <%== pagy_nav(@calendar[:day]) if @calendar[:day] %>
 <% end %>
 
 <%== pagy_nav(@pagy) %>
