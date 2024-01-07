@@ -1,0 +1,12 @@
+<div class="overflow-auto h-96 bg-slate-300">
+  <%# up %>
+  <div id="prevbtn">
+    <%= button_to "Load before #{@date}", calendar_day_path(date: @date) %>
+  </div>
+
+  <%# down %>
+  <%= turbo_frame_tag :calendar, class:"gap-4", target: '_top' do %>
+    <%= render 'day', date: @date %>
+    <%= turbo_frame_tag :calendar, src: calendar_day_path(date: @next_date), loading: :lazy %>
+  <% end %>
+<div>

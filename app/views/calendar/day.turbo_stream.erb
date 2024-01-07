@@ -1,0 +1,10 @@
+<%= turbo_stream.update :prevbtn do %>
+  <%= button_to "Load before #{@prev_date}", calendar_day_path(date: @prev_date) %>
+<% end %>
+<%= turbo_stream.before @date do %>
+  <%= render 'day', date: @prev_date %>
+<% end %>
+
+<%#= turbo_stream.append :prevbtn do %>
+  <%#= render 'day', date: @date %>
+<%# end %>

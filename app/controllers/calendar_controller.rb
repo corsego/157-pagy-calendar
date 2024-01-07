@@ -2,6 +2,16 @@ class CalendarController < ApplicationController
   def index
   end
 
+  def day
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @next_date = @date + 1.day
+    @prev_date = @date - 1.day
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
+
   def week
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @events = Event.where(start_date: @date.beginning_of_week..@date.end_of_week)
