@@ -16,6 +16,6 @@ export default class extends Controller {
     console.log("visible")
     history.pushState({}, '', '?date=' + this.dateValue)
     // scroll this element into view
-    // this.element.scrollIntoView({ behavior: "smooth" })
+    this.element.scrollIntoView({ behavior: "smooth" })
   }
 }

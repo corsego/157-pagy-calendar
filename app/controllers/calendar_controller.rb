@@ -3,6 +3,8 @@ class CalendarController < ApplicationController
   end
 
   def day
+    # sleep 1
+    @direction = params[:direction]
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @next_date = @date + 1.day
     @prev_date = @date - 1.day
