@@ -1,0 +1,10 @@
+<div class="overflow-auto h-96 bg-slate-300">
+  <%# up %>
+  <%= turbo_frame_tag :prev_page, src: calendar_day_path(date: @date, direction: :prev, format: :turbo_stream), loading: :lazy %>
+  foo
+  <%# down %>
+  <div id="calendar" data-controller="calendar">
+    <%= render 'day', date: @date %>
+  </div>
+  <%= turbo_frame_tag :next_page, src: calendar_day_path(date: @next_date, direction: :next, format: :turbo_stream), loading: :lazy %>
+<div>

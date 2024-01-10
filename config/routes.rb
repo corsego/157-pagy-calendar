@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :date_avatars
   resources :events
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,4 +9,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "events#index"
+  # get "calendar", to: "events#calendar"
+  get "calendar", to: "calendar#index"
+  get "calendar/day", to: "calendar#day"
+  post "calendar/day", to: "calendar#day"
+  get "calendar/week", to: "calendar#week"
+  get "calendar/month", to: "calendar#month"
 end
