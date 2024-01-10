@@ -1,4 +1,4 @@
-<div class="overflow-auto h-96">
+<div class="overflow-auto h-full">
   <%#= turbo_frame_tag :calendar, src: calendar_week_path(date: @last_week_date), loading: :lazy, target: '_top', data: { turbo_action: 'advance' }, class:"hidden" %>
   <%= turbo_frame_tag :calendar, target: '_top' do %>
     <div class="font-bold text-center">
@@ -9,7 +9,7 @@
         <div></div>
       <% end %>
       <% @date.all_month.each do |day| %>
-        <div class="border hover:bg-rose-200 h-32 bg-rose-300">
+        <div class="border hover:bg-rose-200 h-32 bg-rose-300" style="background-size: cover; background-position: center; background-image: url(<%= rails_blob_url(DateAvatar.for_day(day).avatar_attached.first.avatar) if DateAvatar.for_day(day).avatar_attached.first.present? %>);">
           <div class="bg-rose-400 text-center">
           <%= day.strftime('%a, %d %b') %>
           </div>

@@ -1,10 +1,6 @@
 class DateAvatarsController < ApplicationController
   before_action :set_date_avatar, only: %i[ show edit update ]
 
-  def index
-    @date_avatars = DateAvatar.all
-  end
-
   def new
     @date_avatar = DateAvatar.new
   end
