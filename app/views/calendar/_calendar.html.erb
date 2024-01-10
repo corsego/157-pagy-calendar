@@ -1,0 +1,17 @@
+<%= turbo_frame_tag :"#{direction}_journal_timeline" do %>
+  <article class="bg-earth-100 dark:bg-gray-850 hidden" data-controller="calendar" data-direction="<%= direction %>">
+    <div class="bg-earth-50 dark:bg-gray-840 dark:text-bubble-900 px-4 py-1 text-sm font-stdmedium">
+      <%= @date.strftime('%B %Y') %>
+    </div>
+    <div class="flex items-center justify-between overflow-x-auto">
+      <table class="w-full h-96">
+        <thead>
+
+        </thead>
+        <tbody>
+          here
+        </tbody>
+      </table>
+    </div>
+  </article>
+<% end %>

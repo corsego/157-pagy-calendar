@@ -1,0 +1,16 @@
+<div class="journal-calendar-container">
+  <header class="journal-calendar-header bg-earth-50 z-50 dark:bg-gray-850 dark:text-bubble-800 grid grid-cols-7 p-1">
+    <span class="journal-calendar-header__item">mon</span>
+    <span class="journal-calendar-header__item">tue</span>
+    <span class="journal-calendar-header__item">wed</span>
+    <span class="journal-calendar-header__item">thu</span>
+    <span class="journal-calendar-header__item">fri</span>
+    <span class="journal-calendar-header__item">sat</span>
+    <span class="journal-calendar-header__item">sun</span>
+  </header>
+
+  <div id="journal-container" class="h-screen overflow-y-auto">
+    <%= render "calendar/scrollable", direction: "past" %>
+    <%= render "calendar/scrollable", direction: "future" %>
+  </div>
+</div>
