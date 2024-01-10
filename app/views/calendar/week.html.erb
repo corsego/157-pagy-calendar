@@ -3,7 +3,7 @@
   <%= turbo_frame_tag :calendar, target: '_top' do %>
     <!-- <div class="font-bold text-center">Week # <%= @date.strftime('%U, %Y') %></div> -->
     <div class="grid grid-cols-7 h-96 bg-rose-300">
-      <% days_of_week(@date).each do |day| %>
+      <% @date.all_week.each do |day| %>
         <div class="border hover:bg-rose-200">
           <div class="sticky top-0 bg-rose-400 text-center">
           <%= day.strftime('%a, %d %b') %>

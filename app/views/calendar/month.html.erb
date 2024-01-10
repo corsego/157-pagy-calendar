@@ -8,7 +8,7 @@
       <% month_offset(@date).times do %>
         <div></div>
       <% end %>
-      <% days_of_month(@date).each do |day| %>
+      <% @date.all_month.each do |day| %>
         <div class="border hover:bg-rose-200 h-32 bg-rose-300">
           <div class="bg-rose-400 text-center">
           <%= day.strftime('%a, %d %b') %>
