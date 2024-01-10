@@ -1,10 +1,10 @@
-<div class="overflow-auto h-96">
+<div class="overflow-auto h-full">
   <%#= turbo_frame_tag :calendar, src: calendar_week_path(date: @last_week_date), loading: :lazy, target: '_top', data: { turbo_action: 'advance' }, class:"hidden" %>
   <%= turbo_frame_tag :calendar, target: '_top' do %>
     <!-- <div class="font-bold text-center">Week # <%= @date.strftime('%U, %Y') %></div> -->
     <div class="grid grid-cols-7 h-96 bg-rose-300">
       <% @date.all_week.each do |day| %>
-        <div class="border hover:bg-rose-200">
+        <div class="border hover:bg-rose-200" style="background-size: cover; background-position: center; background-image: url(<%= rails_blob_url(DateAvatar.for_day(day).avatar_attached.first.avatar) if DateAvatar.for_day(day).avatar_attached.first.present? %>);">
           <div class="sticky top-0 bg-rose-400 text-center">
           <%= day.strftime('%a, %d %b') %>
           </div>
