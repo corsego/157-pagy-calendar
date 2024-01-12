@@ -1,0 +1,17 @@
+<% if @direction == "next" %>
+  <%= turbo_stream.after @prev do %>
+    <%= render 'week', date: @date %>
+  <% end %>
+
+  <%= turbo_stream.replace :next do %>
+    <%= turbo_frame_tag :next, src: calendar_week_path(date: @next, direction: :next, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% elsif @direction == "prev" %>
+  <%= turbo_stream.before @next do %>
+    <%= render 'week', date: @date %>
+  <% end %>
+
+  <%= turbo_stream.replace :prev do %>
+    <%#= turbo_frame_tag :prev, src: calendar_week_path(date: @prev, direction: :prev, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>

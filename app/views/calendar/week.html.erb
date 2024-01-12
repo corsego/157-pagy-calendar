@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :prev, src: calendar_week_path(date: @prev, direction: :prev, format: :turbo_stream), loading: :lazy %>
+
+<%= render 'week', date: @date %>
+<%#= turbo_frame_tag :week, src: calendar_week_path(date: @next), loading: :lazy, data: { turbo_action: "advance"} %>
+<%= turbo_frame_tag :next, src: calendar_week_path(date: @next, direction: :next, format: :turbo_stream), loading: :lazy %>
