@@ -9,13 +9,15 @@ export default class extends Controller {
     useIntersection(this, {
       threshold: 0.5
       // threshold: 0.3
+      // threshold: 1
     })
   }
 
   appear(entry, observer) {
     console.log("visible")
-    history.pushState({}, '', '?date=' + this.dateValue)
+    // history.pushState({}, '', '?date=' + this.dateValue)
+    history.replaceState(history.state, "", this.dateValue);
     // scroll this element into view
-    this.element.scrollIntoView({ behavior: "smooth" })
+    // this.element.scrollIntoView({ behavior: "smooth" })
   }
 }
