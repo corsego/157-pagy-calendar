@@ -1,6 +1,7 @@
-<div class="space-y-4 overflow-auto h-screen" data-controller="calendar" data-calendar-current-week-value="week_<%= @current_week %>">
-  <%= link_to "Previous page", calendar_index_path(date: @prev_page), data: {controller: "autoclick", calendar_target: "prevlink"}, class: "hidden1" %>
+<div class="space-y-4 overflow-auto" style="height: 80vh" data-controller="calendar" data-calendar-current-week-value="week_<%= @current_week %>">
+  <%= link_to "Prev page", calendar_index_path(date: @first_week), data: {controller: "autoclick"} %>
   <% @weeks.each do |week_start| %>
     <%= render 'calendar/week', week_start: %>
   <% end %>
+  <%= link_to "Next page", calendar_index_path(date: @last_week), data: {controller: "autoclick"} %>
 </div>

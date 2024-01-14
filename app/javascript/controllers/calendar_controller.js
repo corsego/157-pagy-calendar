@@ -2,12 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="calendar"
 export default class extends Controller {
-  static targets = [ "prevlink", "week" ]
+  static targets = [ "week" ]
   static values = { currentWeek: String }
 
   connect() {
     this.scrollToCurrentWeek()
-    this.prevlinkTarget.classList.remove('hidden')
   }
 
   scrollToCurrentWeek() {

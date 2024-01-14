@@ -7,7 +7,7 @@ export default class extends Controller {
     useIntersection(this, {
       // threshold: 0.5
       // threshold: 0.3
-      threshold: 1
+      // threshold: 1
     })
   }
 
