@@ -4,7 +4,8 @@
 
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <%= link_to "Back to events", events_path %>
+  <%= link_to "Back to events", calendar_path(date: @event.start_date) %>
+  <%#= link_to "Back to events", calendar_week_path(date: @event.start_date) %>
 
   <%= button_to "Destroy this event", @event, method: :delete %>
 </div>

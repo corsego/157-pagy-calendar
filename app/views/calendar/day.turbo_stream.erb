@@ -1,0 +1,16 @@
+<% if @direction == "next" %>
+  <%= turbo_stream.after @prev_date do %>
+    <%= render 'day', date: @date %>
+  <% end %>
+  <%= turbo_stream.replace :next_page do %>
+    <%= turbo_frame_tag :next_page, src: calendar_day_path(date: @next_date, direction: :next, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% elsif @direction == "prev" %>
+  <%= turbo_stream.before @date do %>
+    <%= render 'day', date: @prev_date %>
+  <% end %>
+
+  <%= turbo_stream.replace :prev_page do %>
+    <%= turbo_frame_tag :prev_page, src: calendar_day_path(date: @prev_date, direction: :prev, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>
