@@ -7,6 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Event.destroy_all
+
 path = "https://raw.githubusercontent.com/ruby-conferences/ruby-conferences.github.io/master/_data/conferences.yml"
 uri = URI.open(path)
 yaml = YAML.load_file uri, permitted_classes: [Date]

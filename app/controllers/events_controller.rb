@@ -55,10 +55,14 @@ class EventsController < ApplicationController
     # @events = Event.all
     collection = Event.all.order(start_date: :asc)
     @calendar, @pagy, @events = pagy_calendar(collection,
-      year:  { size:  [1, 1, 1, 1] },
-      month:  { size: [0, 12, 12, 0], format: '%b' },
+      year: {size: 4},
+      month: {size: 12, format: '%b'},
+      # week:  { size: 53, format: '%W' },
+      day: {size: 31, format: '%d'},
+      # year:  { size:  [1, 1, 1, 1] },
+      # month:  { size: [0, 12, 12, 0], format: '%b' },
       # week:  { size: [0, 53, 53, 0], format: '%W' },
-      day:  { size: [0, 31, 31, 0], format: '%d' },
+      # day:  { size: [0, 31, 31, 0], format: '%d' },
       pagy:  { items: 10 }, # items per page
       active: !params[:skip]
     )
