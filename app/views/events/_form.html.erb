@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :start_date, style: "display: block" %>
-    <%= form.datetime_field :start_date %>
+    <%= form.datetime_field :start_date, value: params[:start_date]&.to_date %>
   </div>
 
   <div>

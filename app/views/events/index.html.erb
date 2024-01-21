@@ -1,7 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Events</h1>
-<%= link_to "New event", new_event_path %>
+<% if @calendar %>
+  <%= link_to 'Today', pagy_calendar_url_at(@calendar, Time.zone.now) %>
+  <%= link_to "New event", new_event_path(start_date: @calendar.showtime) %>
+  <%= link_to 'Normal pagination', events_path(skip: true) %>
+<% else %>
+  <%= link_to "New event", new_event_path %>
+  <%= link_to 'Calendar pagination', events_path %>
+<% end %>
+<!-- calendar filtering -->
+
+
+<% if @calendar %>
+  <%= @calendar.showtime %>
+  <%== pagy_nav(@calendar[:year]) %>
+  <%== pagy_nav(@calendar[:month]) if @calendar[:month] %>
+  <%== pagy_nav(@calendar[:day]) if @calendar[:day] %>
+  <%== pagy_nav(@calendar[:week]) if @calendar[:week] %>
+<% end %>
+<!-- pagy info extended for the calendar unit -->
+<%== pagy_info(@pagy) %> for <%#== @calendar[:month].label(format: '%B %Y') %>
+
+<!-- standard pagination of the selected month -->
+<%== pagy_nav(@pagy) %>
 
 <div id="events" class="space-y-4">
   <% @events.each do |event| %>

@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_calendar, only: %i[ index create update]
 
   def index
-    @events = Event.all
+    # @events = Event.all
   end
 
   def show
@@ -20,7 +21,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+        # debugger
+        format.html { redirect_to helpers.pagy_calendar_url_at(@calendar, @event.start_date), notice: "Event was successfully created." }
+        # format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -46,6 +49,17 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_calendar
+    collection = Event.all
+    @calendar, @pagy, @events = pagy_calendar(collection,
+    year:  { size:  [1, 1, 1, 1] },
+    # week: { size: 53, format: "%W" },
+    month: { size: 12, format: "%b" },
+    day: { size: 31, format: "%d" },
+    pagy:  { items: 10 },
+    active: !params[:skip])
+  end
 
   def set_event
     @event = Event.find(params[:id])
