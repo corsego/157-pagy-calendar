@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   root "events#index"
 
   get "calendar/week", to: "calendar#week"
+  post "calendar/week", to: "calendar#week"
 end

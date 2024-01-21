@@ -8,5 +8,10 @@ class CalendarController < ApplicationController
     @next = @date + 1.week
     @prev = @date - 1.week
     @direction = params[:direction]
+    # debugger
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 end
