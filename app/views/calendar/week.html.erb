@@ -1,0 +1,12 @@
+<div class="overflow-auto" style="height: 576px">
+  <%#= turbo_frame_tag :prev, src: calendar_week_path(date: @prev, direction: :prev, format: :turbo_stream), loading: :lazy %>
+  <div id="prev">
+    <%= button_to "Prev", calendar_week_path(date: @prev, direction: :prev), data: { controller: "autoclick" } %>
+  </div>
+  <%#= link_to "Prev", calendar_week_path(date: @prev, direction: :prev) %>
+  <div data-controller="autoscroll">
+    <%= render 'week', date: @date %>
+  </div>
+  <%#= turbo_frame_tag :week, src: calendar_week_path(date: @next), loading: :lazy, data: { turbo_action: "advance"} %>
+  <%= turbo_frame_tag :next, src: calendar_week_path(date: @next, direction: :next, format: :turbo_stream), loading: :lazy %>
+</div>
