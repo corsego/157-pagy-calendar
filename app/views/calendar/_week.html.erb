@@ -1,0 +1,7 @@
+<div id="week_<%= week_start %>" class="grid grid-cols-7 border" data-calendar-target="week">
+  <% week_start.all_week.each do |day| %>
+    <div class="h-72 bg-rose-400 border">
+      <%= day %>
+    </div>
+  <% end %>
+</div>

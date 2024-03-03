@@ -9,10 +9,13 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%#= turbo_refreshes_with method: :morph, scroll: :preserve %>
+    <%#= yield :head %>
   </head>
 
   <body>
     <main class="p-8">
+      <%= link_to "Today", calendar_index_path %>
       <%= yield %>
     </main>
   </body>
