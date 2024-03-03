@@ -1,18 +1,4 @@
-<div id="<%= dom_id event %>" class="border">
-  <p>
-    <strong>Name:</strong>
-    <%= event.name %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= event.location %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= event.start_date %>
-  </p>
-
-  <%= link_to "Show this event", event %>
+<div id="<%= dom_id event %>" class="border rounded-md bg-rose-400">
+  <%= event.name %>,
+  <%= event.location %>
 </div>

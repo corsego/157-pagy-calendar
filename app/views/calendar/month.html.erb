@@ -1,0 +1,6 @@
+<%= render 'calendar/month', date: @date, all_month: @all_month do |day| %>
+  <%= day.strftime('%d') %>
+  <% @events.where(start_date: day.all_day).each do |event| %>
+    <%= render 'events/event', event: event %>
+  <% end %>
+<% end %>
